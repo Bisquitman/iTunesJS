@@ -21,8 +21,6 @@ export const musicPlayerInit = () => {
   let trackIndex = 0;
 
   const loadTrack = () => {
-    setInterval(updateTime, 0);
-
     const isPlayed = audioPlayer.paused;
     const track = playlist[trackIndex];
     audioImg.src = `./audio/${track}.jpg`;
@@ -34,6 +32,8 @@ export const musicPlayerInit = () => {
     } else {
       audioPlayer.play();
     }
+
+    audioPlayer.addEventListener('canplay', updateTime);
   };
 
   const prevTrack = () => {
